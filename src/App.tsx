@@ -6,24 +6,19 @@ import TodoList from "./components/TodoList";
 
 const App: React.FC = () => {
 
-  const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleAdd = (e: React.FormEvent) => {
-      e.preventDefault();
+  const handleAdd = (text: string) => {
 
-      if (todo) {
-          setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
-          setTodo("");
+      if(text) {
+          setTodos([...todos, {id: Date.now(), todo: text, isDone: false}]);
       }
   };
-
-  console.log(todo);
 
   return (
       <div className="App">
         <span className="heading">Will's Test App</span>
-        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+        <InputField handleAdd={handleAdd}/>
         <TodoList todos={todos} setTodos={setTodos}/>
       </div>
   );
